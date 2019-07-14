@@ -1,4 +1,4 @@
-package exchange.demo.entity;
+package exchange.demo.model;
 
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;

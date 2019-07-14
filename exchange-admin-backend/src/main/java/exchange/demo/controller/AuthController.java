@@ -1,17 +1,19 @@
 package exchange.demo.controller;
 
-import exchange.demo.entity.Role;
-import exchange.demo.entity.RoleName;
-import exchange.demo.entity.User;
 import exchange.demo.exception.AppException;
+import exchange.demo.model.Role;
+import exchange.demo.model.RoleName;
+import exchange.demo.model.User;
 import exchange.demo.payload.ApiResponse;
 import exchange.demo.payload.JwtAuthenticationResponse;
 import exchange.demo.payload.LoginRequest;
 import exchange.demo.payload.SignUpRequest;
+import exchange.demo.repository.JwtRefreshTokenRepository;
 import exchange.demo.repository.RoleRepository;
 import exchange.demo.repository.UserRepository;
 import exchange.demo.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,16 +21,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -48,6 +48,12 @@ public class AuthController {
 	@Autowired
 	JwtTokenProvider tokenProvider;
 
+	@Autowired
+	JwtRefreshTokenRepository jwtRefreshTokenRepository;
+
+	@Value("${app.jwtExpirationInMs}")
+	private long jwtExpirationInMs;
+
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser (@Valid @RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
@@ -59,9 +65,36 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		String jwt = tokenProvider.generateToken(authentication);
-		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+		//UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+		String accessToken = tokenProvider.generateToken(authentication);
+		//String refreshToken = tokenProvider.generateRefreshToken();
+
+		//saveRefreshToken(userPrincipal, refreshToken);
+		return ResponseEntity.ok(new JwtAuthenticationResponse(accessToken));
 	}
+
+	/*@PostMapping("/refreshToken")
+	public ResponseEntity<?> refreshAccessToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+		return jwtRefreshTokenRepository.findById(refreshTokenRequest.getRefreshToken()).map(jwtRefreshToken -> {
+			User user = jwtRefreshToken.getUser();
+			String accessToken = tokenProvider.generateToken((Authentication) UserPrincipal.create(user));
+			return ResponseEntity.ok(new JwtAuthenticationResponse(accessToken, jwtRefreshToken.getToken(), jwtExpirationInMs));
+		}).orElseThrow(() -> new BadRequestException("Invalid refresh token"));
+	}*/
+
+
+	/*private void saveRefreshToken(UserPrincipal userPrincipal, String refreshToken) {
+		//Persist Refresh Token
+
+		JwtRefreshToken jwtRefreshToken = new JwtRefreshToken(refreshToken);
+		jwtRefreshToken.setUser(userRepository.getOne(userPrincipal.getId()));
+
+		Instant expirationDateTime = Instant.now().plus(360, ChronoUnit.DAYS); //TODO add this in application.properties
+		jwtRefreshToken.setExpirationDateTime(expirationDateTime);
+
+		jwtRefreshTokenRepository.save(jwtRefreshToken);
+	}*/
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
@@ -89,7 +122,7 @@ public class AuthController {
 		User result = userRepository.save(user);
 
 		URI location = ServletUriComponentsBuilder
-				.fromCurrentContextPath().path("/api/users/{username}")
+				.fromCurrentContextPath().path("/users/{username}")
 				.buildAndExpand(result.getUsername()).toUri();
 
 		return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));

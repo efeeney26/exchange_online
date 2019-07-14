@@ -1,6 +1,6 @@
 package exchange.demo.controller;
 
-import exchange.demo.entity.User;
+import exchange.demo.model.User;
 import exchange.demo.exception.ResourceNotFoundException;
 import exchange.demo.payload.UserIdentityAvailability;
 import exchange.demo.payload.UserProfile;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class UserController {

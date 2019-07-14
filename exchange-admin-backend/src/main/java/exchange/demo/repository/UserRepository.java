@@ -1,6 +1,6 @@
 package exchange.demo.repository;
 
-import exchange.demo.entity.User;
+import exchange.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

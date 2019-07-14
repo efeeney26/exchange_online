@@ -1,6 +1,6 @@
 package exchange.demo.security;
 
-import exchange.demo.entity.User;
+import exchange.demo.model.User;
 import exchange.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

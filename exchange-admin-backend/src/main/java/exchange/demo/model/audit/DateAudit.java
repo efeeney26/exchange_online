@@ -1,4 +1,4 @@
-package exchange.demo.entity.audit;
+package exchange.demo.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

@@ -1,6 +1,6 @@
-package exchange.demo.entity;
+package exchange.demo.model;
 
-import exchange.demo.entity.audit.DateAudit;
+import exchange.demo.model.audit.DateAudit;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

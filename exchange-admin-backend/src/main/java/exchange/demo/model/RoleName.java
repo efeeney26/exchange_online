@@ -1,4 +1,4 @@
-package exchange.demo.entity;
+package exchange.demo.model;
 
 public enum RoleName {
 	ROLE_USER,
