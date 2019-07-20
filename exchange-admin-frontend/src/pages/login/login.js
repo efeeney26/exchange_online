@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-//import {login} from "../../api/services/auth";
-import {ApiConst} from "../../constants/api";
-import {login} from "../../api/apiClient";
+import * as http from '../../api'
 import { CORE } from "../../constants/routes";
 
 const Login = (props) => {
@@ -20,10 +18,9 @@ const Login = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		login(data)
+		http.login(data)
 			.then(response => {
-				console.log(response);
-				localStorage.setItem(ApiConst.ACCESS_TOKEN, response.accessToken);
+				http.setJwtToken(response);
 				history.push(CORE.BASE)
 			})
 	};

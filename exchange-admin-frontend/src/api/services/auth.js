@@ -1,15 +1,14 @@
-import { getJwtToken } from "./securityService";
-
-/*import { apiPost } from '../apiClient'
+import { getJwtToken, deleteJwtToken } from "./securityService";
+import {Api} from "../ApiClient";
 
 export async function login(loginRequest) {
-	return apiPost({
-		url: '/auth/signin',
-		body: loginRequest
-	})
-}*/
+	return Api.post('/auth', loginRequest)
+}
+
+export function logout() {
+	return deleteJwtToken();
+}
 
 export const isLoggedIn = () => {
-	console.log('token', getJwtToken())
 	return !!getJwtToken();
-}
+};

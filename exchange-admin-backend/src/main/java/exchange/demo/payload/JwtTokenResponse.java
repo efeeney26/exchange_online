@@ -2,14 +2,11 @@ package exchange.demo.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+
+import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-@Setter
-public class ApiResponse {
-
-	private Boolean success;
-
-	private String message;
+public class JwtTokenResponse implements Serializable {
+	private final String token;
 }

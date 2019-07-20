@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class JwtUserDetailService implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
@@ -22,9 +22,9 @@ public class CustomUserDetailService implements UserDetailsService {
 		User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
 				.orElseThrow(() ->
 						new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
-		);
+				);
 
-		return UserPrincipal.create(user);
+		return JwtUserDetails.create(user);
 	}
 
 	// This method is used by JWTAuthenticationFilter
@@ -34,6 +34,7 @@ public class CustomUserDetailService implements UserDetailsService {
 				() -> new UsernameNotFoundException("User not found with id : " + id)
 		);
 
-		return UserPrincipal.create(user);
+		return JwtUserDetails.create(user);
 	}
 }
+
