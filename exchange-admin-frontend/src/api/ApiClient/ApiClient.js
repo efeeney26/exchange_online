@@ -25,7 +25,6 @@ export default class ApiClient {
 		const mergedOptions = _.merge(_.cloneDeep(this.options), restOptions);
 		const headers = getHeaders(defaultHeaders);
 
-
 		// TODO rewrite this shit
 		try {
 			const response = await fetch(urlWithParams.toString(), {

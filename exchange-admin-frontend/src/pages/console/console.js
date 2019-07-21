@@ -1,24 +1,24 @@
 import React from 'react'
-import {logout} from "../../api/services/auth";
+import * as http from '../../api'
 import {CORE} from "../../constants/routes";
 
 const Console = (props) => {
 	const {history} = props;
 
-	/*const checkUser = () => {
-		checkCurrentUser()
+	const checkUser = () => {
+		http.getCurrentUser()
 			.then(res => console.log('resUser', res));
-	}*/
+	}
 
 	const handleLogout = () => {
-		logout();
+		http.logout();
 		history.push(CORE.BASE)
 	};
 
 	return (
 		<div style={{fontWeight: '500px'}}>
 			Hello
-			{/*<button onClick={checkUser}>check</button>*/}
+			<button onClick={checkUser}>check</button>
 			<button onClick={handleLogout}>Выйти</button>
 		</div>
 	)
