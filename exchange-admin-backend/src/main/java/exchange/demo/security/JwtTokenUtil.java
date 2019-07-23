@@ -65,7 +65,7 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	private Date calculateExpirationDate(Date createdDate) {
-		return new Date(createdDate.getTime() + jwtExpirationInMs * 1000);
+		return new Date(createdDate.getTime() + jwtExpirationInMs);
 	}
 
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
