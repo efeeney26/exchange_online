@@ -7,8 +7,8 @@ const defaultHeaders = new Headers({
 
 const getHeaders = (headers) => {
 	const jwtToken = getJwtToken();
-	if (jwtToken) {
-		headers.append('Authorization', `Baerer ${jwtToken}`);
+	if (jwtToken && !headers.has('Authorization')) {
+		headers.append('Authorization', `Bearer ${jwtToken}`);
 	}
 	return headers;
 };
