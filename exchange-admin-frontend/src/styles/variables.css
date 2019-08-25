@@ -1,0 +1,23 @@
+:root {
+    --font-size-small: 9px;
+    --font-size-medium: 11px;
+    --font-size-default: 16px;
+    --font-size-large: 20px;
+
+    --border-color-focus: #62CC88;
+    --border-color-focus-danger: #FF3538;
+
+    --color-blue: #003366;
+    --color-red: #FF6666;
+    --color-gray: #999999;
+    --color-yellow: #FFFF99;
+    --color-light-yellow: #FFFFCC;
+    --color-light-violet: #9999CC;
+    --color-orange: #FFCC66;
+    --color-black: #333333;
+    --color-brown: #666666;
+    --color-light-brown: #CCCCCC;
+    --color-light-blue: #99CCCC;
+    --color-green: #66CC99;
+    --color-white: #FFFFFF;
+}
