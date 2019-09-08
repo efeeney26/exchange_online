@@ -1,0 +1,37 @@
+@import "../../styles/colors.config.css";
+@import "../../styles/utils.config.css";
+@import "../../styles/font-sizes.config.css";
+
+.input {
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-light-violet);
+    color: var(--color-white);
+    font-size: var(--font-size-md);
+    border: solid 2px var(--color-white);
+    padding: var(--offset-sm) var(--offset-lg);
+    margin: var(--offset-lg) 0 var(--offset-lg);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-white);
+}
+
+.input:disabled {
+    border-color: transparent;
+    opacity: 0.5;
+}
+
+.title {
+    color: var(--color-white);
+    margin-bottom: calc(var(--offset-md) * -1);
+    font-size: var(--font-size-md);
+}
+
+.description {
+    color: var(--color-brown);
+    margin: calc(var(--offset-sm) * -3) 0 var(--offset-lg);
+    font-size: var(--font-size-md);
+}

@@ -1,5 +1,5 @@
-import {Api} from "../ApiClient";
+import { Api } from '../ApiClient';
 
 export async function getCurrentUser() {
-	return Api.get('/user/me')
+    return Api.get('/user/me');
 }

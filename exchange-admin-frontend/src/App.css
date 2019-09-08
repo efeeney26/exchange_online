@@ -1,7 +1,8 @@
-@import "styles/variables.css";
+@import "styles/colors.config.css";
 
 .App {
   display: flex;
   flex-direction: column;
   background-color: var(--color-light-blue);
+  height: 100%;
 }

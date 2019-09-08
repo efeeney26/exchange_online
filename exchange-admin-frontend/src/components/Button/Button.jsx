@@ -35,7 +35,7 @@ export const Button = (props) => {
 Button.defaultProps = {
     type: 'button',
     kind: 'normal',
-    size: 'normal'
+    size: 'md'
 };
 
 Button.propTypes = {
@@ -43,7 +43,7 @@ Button.propTypes = {
     title: PropTypes.string,
     type: PropTypes.oneOf(['button', 'submit']),
     kind: PropTypes.oneOf(['normal', 'danger']),
-    size: PropTypes.oneOf(['normal', 'small']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     wide: PropTypes.bool,
     children: PropTypes.node,
     disabled: PropTypes.bool

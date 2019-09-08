@@ -1,0 +1,21 @@
+@import "../../styles/offsets.config.css";
+@import "../../styles/font-sizes.config.css";
+@import "../../styles/colors.config.css";
+
+.form {
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+}
+
+.formTitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-white);
+    font-weight: 600;
+    margin-bottom: var(--offset-md);
+}
+
+.formDescription {
+    font-size: var(--font-size-lg);
+    color: var(--color-brown);
+    margin-bottom: var(--offset-lg);
+}

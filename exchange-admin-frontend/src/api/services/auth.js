@@ -1,14 +1,12 @@
-import { getJwtToken, deleteJwtToken } from "./securityService";
-import {Api} from "../ApiClient";
+import { getJwtToken, deleteJwtToken } from './securityService';
+import { Api } from '../ApiClient';
 
 export async function login(loginRequest) {
-	return Api.post('/auth', loginRequest)
+    return Api.post('/auth', loginRequest);
 }
 
 export function logout() {
-	return deleteJwtToken();
+    return deleteJwtToken();
 }
 
-export const isLoggedIn = () => {
-	return !!getJwtToken();
-};
+export const isLoggedIn = () => !!getJwtToken();

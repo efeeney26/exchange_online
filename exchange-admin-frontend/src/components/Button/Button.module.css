@@ -1,10 +1,14 @@
-@import "../../styles/variables.css";
+@import "../../styles/colors.config.css";
+@import "../../styles/font-sizes.config.css";
+@import "../../styles/utils.config.css";
+@import "../../styles/offsets.config.css";
 
 .button {
     border: none;
-    border-radius: 25px;
+    border-radius: var(--border-radius-lg);
     cursor: pointer;
     font-weight: 600;
+    padding: var(--offset-sm) var(--offset-lg);
 }
 
 .button:focus {
@@ -21,13 +25,16 @@
     width: 100%;
 }
 
-.sizeNormal {
-    font-size: var(--color-green);
-    padding: 9px 50px;
+.sizeLg {
+    font-size: var(--font-size-lg);
 }
 
-.sizeSmall {
-    font-size: var(--font-size-small);
+.sizeMd {
+    font-size: var(--font-size-md);
+}
+
+.sizeSm {
+    font-size: var(--font-size-sm);
 }
 
 .kindNormal {

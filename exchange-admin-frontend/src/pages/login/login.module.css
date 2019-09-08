@@ -1,0 +1,11 @@
+@import "../../styles/offsets.config.css";
+@import "../../styles/font-sizes.config.css";
+@import "../../styles/colors.config.css";
+
+.container {
+    background-color: var(--color-light-violet);
+    border-radius: var(--border-radius-md);
+    padding: var(--offset-lg);
+    width: 700px;
+    margin: auto;
+}
